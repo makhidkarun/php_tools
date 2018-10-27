@@ -17,14 +17,6 @@ function roll2() {
   return random_int(1,6) + random_int(1,6);
 }
 
-function upp_s(array $upp) {
-  $string = '';
-  foreach ($upp as $s) {
-    $string .= dechex($s);
-  }
-  return strtoupper($string);
-}
-
 function gen_upp() { 
   for ($i = 1; $i <=6; $i++) {
     $upp[] = roll2();
@@ -59,14 +51,13 @@ function get_rand_data(string $table) {
 }
 
 $upp      = gen_upp();
-$char_upp = upp_s($upp);
 $gender   = random_int(0,1) ? "F" : "M";
 $name     = get_name($gender);
 
-print("Before school and gym: $char_upp.\n");
-$upp = go_to_school($upp);
-$upp = go_to_the_gym($upp);
-$char_upp = upp_s($upp);
-print("$name [$gender]  $char_upp.\n");
-
+require 'lib/character.php';
+$data['name']   = $name;
+$data['upp']    = $upp;
+$data['gender'] = $gender;
+$person = new Character($data);
+$person->to_s();
 ?>
