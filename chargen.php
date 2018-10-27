@@ -1,23 +1,33 @@
 <?php
 
+const STR = 0;
+const EDU = 4;
+
+function go_to_school(array $upp) {
+  $upp[EDU] += 3;
+  return $upp;
+}
+
+function go_to_the_gym(array $upp) {
+  $upp[STR] +=2;
+  return $upp;
+}
+
 function roll2() {
   return random_int(1,6) + random_int(1,6);
 }
 
 function upp_s(array $upp) {
-  $stats = ['str', 'dex', 'end', 'int', 'edu', 'soc'];
   $string = '';
-  foreach ($stats as $s) {
-    $string .= dechex($upp[$s]);
+  foreach ($upp as $s) {
+    $string .= dechex($s);
   }
   return strtoupper($string);
 }
 
 function gen_upp() { 
-  $stats = ['str', 'dex', 'end', 'int', 'edu', 'soc'];
-  $upp = [];
-  foreach ($stats as $s) {
-    $upp[$s] = roll2();
+  for ($i = 1; $i <=6; $i++) {
+    $upp[] = roll2();
   }
   return $upp;
 }
@@ -53,6 +63,10 @@ $char_upp = upp_s($upp);
 $gender   = random_int(0,1) ? "F" : "M";
 $name     = get_name($gender);
 
+print("Before school and gym: $char_upp.\n");
+$upp = go_to_school($upp);
+$upp = go_to_the_gym($upp);
+$char_upp = upp_s($upp);
 print("$name [$gender]  $char_upp.\n");
 
 ?>
