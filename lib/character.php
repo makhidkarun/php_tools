@@ -11,8 +11,12 @@ class Character {
       $this->name   = $data['name']; 
     } else {
       $this->name   = $this->get_name($this->gender);
-    }  
-    $this->upp    = $data['upp'];
+    } 
+    if (isset($data['upp'])) { 
+      $this->upp    = $data['upp'];
+    } else {
+      $this->upp    = $this->gen_upp();
+    }
   }
 
   public function to_s() {
