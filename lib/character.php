@@ -1,22 +1,11 @@
 <?php
 
 class Character {
-  public function __construct($data) {
-    if (isset($data['gender'])) {
-      $this->gender = $data['gender'];
-    } else {
-      $this->gender = random_int(0,1) ? "F" : "M";
-    } 
-    if (isset($data['name'])) {
-      $this->name   = $data['name']; 
-    } else {
-      $this->name   = $this->get_name($this->gender);
-    } 
-    if (isset($data['upp'])) { 
-      $this->upp    = $data['upp'];
-    } else {
-      $this->upp    = $this->gen_upp();
-    }
+  public function __construct($data = []) {
+    $this->gender = isset($data['gender']) ? $data['gender']  : $this->set_gender();
+    $this->name   = isset($data['name'])   ? $data['name']    : $this->get_name($this->gender);
+    $this->upp    = isset($data['upp'])    ? $data['upp']     : $this->gen_upp();
+    $this->upp_s  = $this->upp_to_s($this->upp);
   }
 
   public function to_s() {
@@ -24,6 +13,9 @@ class Character {
     print("$this->name [$this->gender] $upp_s \n");
   }
 
+  private function set_gender() {
+    return random_int(0,1) ? "F" : "M";
+  }
   private function upp_to_s(array $upp) {
     $string = ''; 
     foreach ($upp as $s) {
