@@ -8,9 +8,9 @@ class Character {
     $this->upp_s  = $this->upp_to_s($this->upp);
   }
 
-  public function to_s() {
-    $upp_s = $this->upp_to_s($this->upp);
-    print("$this->name [$this->gender] $upp_s \n");
+  public function __toString() {
+    $return_string = "{$this->name} [{$this->gender}] {$this->upp_s}";
+    return $return_string;
   }
 
   private function set_gender() {

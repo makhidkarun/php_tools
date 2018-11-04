@@ -8,7 +8,7 @@ class View {
   }
 
   public function __toString() {
-    $return_string = "{$this->person->name} [{$this->person->gender}] {$this->person->upp_s}";
+    $return_string = "{$this->person}";
     return $return_string;
   }
 }
