@@ -16,10 +16,14 @@ class Character {
   private function set_gender() {
     return rand(0,1) ? "F" : "M";
   }
-  private function upp_to_s(array $upp) {
-    $string = '';
-    foreach ($upp as $s) {
-      $string .= dechex($s);
+  private function upp_to_s( $upp) {
+    if (is_string($upp)) {
+      $string = $upp ;
+    } else {
+      $string = '';
+      foreach ($upp as $s) {
+        $string .= dechex($s);
+      }
     }
     return strtoupper($string);
   }
