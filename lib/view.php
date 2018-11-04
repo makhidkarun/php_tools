@@ -1,7 +1,7 @@
 <?php
 
 class View {
-  public function __construct($person) {
+  public function __construct(Character $person) {
     $this->name   = $person->name;
     $this->gender = $person->gender;
     $this->upp_s  = $person->upp_s;

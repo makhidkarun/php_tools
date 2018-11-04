@@ -17,7 +17,7 @@ class Character {
     return rand(0,1) ? "F" : "M";
   }
   private function upp_to_s(array $upp) {
-    $string = ''; 
+    $string = '';
     foreach ($upp as $s) {
       $string .= dechex($s);
     }
