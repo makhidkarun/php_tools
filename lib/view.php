@@ -10,5 +10,3 @@ class View {
     return "$this->name [$this->gender] $this->upp_s";
   }
 }
-?>
-
