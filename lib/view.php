@@ -1,13 +1,14 @@
 <?php
 
 class View {
-  public function __construct($person) {
+  protected $person;
+
+  public function __construct(Character $person) {
     $this->person = $person;
   }
-  public function to_string() {
-    $return_string = "$this->name [$this->gender] $this->upp_s";
+
+  public function __toString() {
+    $return_string = "{$this->person->name} [{$this->person->gender}] {$this->person->upp_s}";
     return $return_string;
   }
 }
-?>
-
