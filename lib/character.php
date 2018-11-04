@@ -1,7 +1,7 @@
 <?php
 
 class Character {
-  public function __construct($data = []) {
+  public function __construct($data = array()) {
     $this->gender = isset($data['gender']) ? $data['gender']  : $this->set_gender();
     $this->name   = isset($data['name'])   ? $data['name']    : $this->get_name($this->gender);
     $this->upp    = isset($data['upp'])    ? $data['upp']     : $this->gen_upp();
@@ -14,7 +14,7 @@ class Character {
   }
 
   private function set_gender() {
-    return random_int(0,1) ? "F" : "M";
+    return rand(0,1) ? "F" : "M";
   }
   private function upp_to_s(array $upp) {
     $string = ''; 
@@ -25,7 +25,7 @@ class Character {
   }
 
   private function roll2() {
-    return random_int(1,6) + random_int(1,6);
+    return rand(1,6) + rand(1,6);
   }
 
   private function gen_upp() {
@@ -35,7 +35,7 @@ class Character {
     return $upp;
   }
 
-  private function get_name(string $gender) {
+  private function get_name($gender) {
     if ($gender == "M") {
       $first_name_table = 'humaniti_male_first';
     } else {
@@ -48,7 +48,7 @@ class Character {
     return $name;
   }
 
-  private function get_rand_data(string $table) {
+  private function get_rand_data($table) {
     try {
       $dbh = new PDO("sqlite:data/names.db");
     } catch(PDOException $e) {
