@@ -8,7 +8,7 @@ class View {
   }
 
   public function __toString() {
-    $return_string = "{$this->person}";
+    $return_string = "Your new crew: {$this->person}\n";
     return $return_string;
   }
 }
